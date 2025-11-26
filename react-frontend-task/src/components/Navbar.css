@@ -52,6 +52,10 @@
   color: #3498db;
 }
 
+.navbar-link.active {
+  color: #3498db;
+}
+
 .navbar-link::after {
   content: '';
   position: absolute;
@@ -63,7 +67,8 @@
   transition: width 0.3s ease;
 }
 
-.navbar-link:hover::after {
+.navbar-link:hover::after,
+.navbar-link.active::after {
   width: 100%;
 }
 

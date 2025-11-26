@@ -1,6 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css';
+
+const navLinks = [
+  { label: 'Home', to: '/' },
+  { label: 'Catalog', to: '/catalog' },
+  { label: 'Cart', to: '/cart' },
+  { label: 'Admin', to: '/admin' },
+];
 
 const Navbar: React.FC = () => {
   return (
@@ -10,26 +17,18 @@ const Navbar: React.FC = () => {
           <h1>Bookstore</h1>
         </Link>
         <ul className="navbar-menu">
-          <li className="navbar-item">
-            <Link to="/" className="navbar-link">
-              Home
-            </Link>
-          </li>
-          <li className="navbar-item">
-            <Link to="/books" className="navbar-link">
-              Books
-            </Link>
-          </li>
-          <li className="navbar-item">
-            <Link to="/about" className="navbar-link">
-              About
-            </Link>
-          </li>
-          <li className="navbar-item">
-            <Link to="/contact" className="navbar-link">
-              Contact
-            </Link>
-          </li>
+          {navLinks.map((link) => (
+            <li key={link.to} className="navbar-item">
+              <NavLink
+                to={link.to}
+                className={({ isActive }) =>
+                  `navbar-link ${isActive ? 'active' : ''}`
+                }
+              >
+                {link.label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>
