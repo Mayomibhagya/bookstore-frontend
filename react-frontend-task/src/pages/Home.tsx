@@ -1,47 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
+import { useBooks } from '../hooks/useBooks';
+import { useCart } from '../context/CartContext';
 import './Home.css';
 
-interface Book {
-  id: number;
-  title: string;
-  author: string;
-  price: number;
-  image: string;
-}
-
-const featuredBooks: Book[] = [
-  {
-    id: 1,
-    title: 'The Great Gatsby',
-    author: 'F. Scott Fitzgerald',
-    price: 12.99,
-    image: 'https://via.placeholder.com/200x300?text=The+Great+Gatsby',
-  },
-  {
-    id: 2,
-    title: 'To Kill a Mockingbird',
-    author: 'Harper Lee',
-    price: 11.99,
-    image: 'https://via.placeholder.com/200x300?text=To+Kill+a+Mockingbird',
-  },
-  {
-    id: 3,
-    title: '1984',
-    author: 'George Orwell',
-    price: 13.99,
-    image: 'https://via.placeholder.com/200x300?text=1984',
-  },
-  {
-    id: 4,
-    title: 'Pride and Prejudice',
-    author: 'Jane Austen',
-    price: 10.99,
-    image: 'https://via.placeholder.com/200x300?text=Pride+and+Prejudice',
-  },
-];
-
 const Home: React.FC = () => {
+  const { featuredBooks } = useBooks();
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
+
   return (
     <div className="home">
       <section className="welcome-section">
@@ -53,11 +21,11 @@ const Home: React.FC = () => {
             stories that inspire, entertain, and transform.
           </p>
           <div className="welcome-buttons">
-            <Button variant="primary" onClick={() => console.log('Browse clicked')}>
+            <Button variant="primary" onClick={() => navigate('/catalog')}>
               Browse Collection
             </Button>
-            <Button variant="secondary" onClick={() => console.log('View All clicked')}>
-              View All Books
+            <Button variant="secondary" onClick={() => navigate('/cart')}>
+              View Cart
             </Button>
           </div>
         </div>
@@ -74,7 +42,7 @@ const Home: React.FC = () => {
               <div key={book.id} className="book-card">
                 <div className="book-image-container">
                   <img
-                    src={book.image}
+                    src={book.coverImage}
                     alt={book.title}
                     className="book-image"
                   />
@@ -82,10 +50,10 @@ const Home: React.FC = () => {
                 <div className="book-info">
                   <h3 className="book-title">{book.title}</h3>
                   <p className="book-author">{book.author}</p>
-                  <p className="book-price">${book.price.toFixed(2)}</p>
+                  <p className="book-price">Rs {book.price.toFixed(2)}</p>
                   <Button
                     variant="primary"
-                    onClick={() => console.log(`Add to cart: ${book.title}`)}
+                    onClick={() => addToCart(book)}
                     className="book-button"
                   >
                     Add to Cart

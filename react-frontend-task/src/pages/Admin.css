@@ -1,0 +1,30 @@
+.admin-page {
+  padding: 4rem 2rem;
+}
+
+.admin-card {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.admin-card h1 {
+  margin-bottom: 1rem;
+}
+
+.admin-card p {
+  line-height: 1.7;
+  color: #636e72;
+}
+
+.admin-card ul {
+  margin: 1.5rem 0 0 1.5rem;
+  color: #2c3e50;
+}
+
+.admin-card li {
+  margin-bottom: 0.5rem;
+}
