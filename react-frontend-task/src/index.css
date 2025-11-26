@@ -56,3 +56,11 @@ img {
   height: auto;
   display: block;
 }
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  color: #95a5a6;
+  margin-bottom: 0.4rem;
+}
